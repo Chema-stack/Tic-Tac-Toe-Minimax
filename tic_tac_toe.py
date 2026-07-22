@@ -2,6 +2,7 @@ class Juego:
 
     def __init__(self):
         self.tablero = [["-" for _ in range(3)] for _ in range(3)]
+        self.jugadas = 0
 
     def normalizador(self, fila,columna): #Esta funcion normaliza los movimientos
         return fila - 1, columna - 1 #Le quita a la fila y a la columna uno
@@ -42,6 +43,16 @@ class Juego:
 
         return False
     
+    def turno(self): #Alterna entre uno y otro
+
+        if self.jugadas == 9: #si se llega a nueve jugadas hay empate
+            raise ValueError("Empate")
+        elif self.jugadas % 2 == 0: #si la jugada es par o 0 es el turno de x
+            self.jugadas += 1 #se ha realizado una nueva jugada
+            return "x"
+        else: #si la jugada es impar es el turno de y
+            self.jugadas += 1 #se ha realizado una nueva jugada
+            return "o"
 
 
 
