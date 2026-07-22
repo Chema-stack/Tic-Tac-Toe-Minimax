@@ -7,21 +7,21 @@ class Juego:
         return fila - 1, columna - 1 #Le quita a la fila y a la columna uno
                                     #para que entre en los limites de la matriz
 
-    def movimiento(self,jugador,fila,columna):
+    def movimiento(self,jugador,fila,columna): #realiza un movimiento del juego
         
-        fila, columna = self.normalizador(fila,columna)
+        fila, columna = self.normalizador(fila,columna) #normalizamos la entrada
 
-        if self.tablero[fila][columna] == "-":
-            self.tablero[fila][columna] = jugador
+        if self.tablero[fila][columna] == "-": #si no hay nada en dicha posicion
+            self.tablero[fila][columna] = jugador #colocamos la ficha
         else:
-            raise ValueError("Jugada no valida")
+            raise ValueError("Jugada no valida") #si la casilla esta ocupada salta excepcion
         
-    def imprimir_tablero(self):
+    def imprimir_tablero(self): #imprime tablero
         for fila in self.tablero:
             print(" | ".join(fila))
         print()
 
-    def comprobar(self, jugador):
+    def comprobar(self, jugador): #comprueba si hay 3 en raya
             # 1. Comprobar Filas
         for fila in self.tablero:
             if fila[0] == fila[1] == fila[2] == jugador:
@@ -41,6 +41,8 @@ class Juego:
             return True
 
         return False
+    
+
 
 
             
