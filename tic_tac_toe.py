@@ -66,13 +66,14 @@ class Juego:
     
     def jugar(self):
         ganador = False
-        while(self.jugadas < 9 or not ganador):
+        while(self.jugadas < 9):
             self.imprimir_tablero()
             jugador = self.turno()
             self.seleccionar_jugada(jugador)
             if self.comprobar(jugador):
                 print("Gana el jugador " + jugador)
                 ganador = True
+                break
         if not ganador:
             print("Empate")
 
