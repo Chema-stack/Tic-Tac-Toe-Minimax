@@ -53,6 +53,13 @@ class Juego:
         else: #si la jugada es impar es el turno de y
             self.jugadas += 1 #se ha realizado una nueva jugada
             return "o"
+        
+    def seleccionar_jugada(self): #pide al jugador la fila y columna
+        fila = input("Seleccione fila:")
+        columna = input("Seleccione columna:")
+
+        return fila, columna
+    
 
 
 
