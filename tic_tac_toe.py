@@ -16,6 +16,11 @@ class Juego:
         else:
             raise ValueError("Jugada no valida")
         
+    def imprimir_tablero(self):
+        for fila in self.tablero:
+            print(" | ".join(fila))
+        print()
+
     
 
             
