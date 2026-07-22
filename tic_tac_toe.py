@@ -45,9 +45,8 @@ class Juego:
     
     def turno(self): #Alterna entre uno y otro
 
-        if self.jugadas == 9: #si se llega a nueve jugadas hay empate
-            raise ValueError("Empate")
-        elif self.jugadas % 2 == 0: #si la jugada es par o 0 es el turno de x
+        
+        if self.jugadas % 2 == 0: #si la jugada es par o 0 es el turno de x
             
             return "x"
         else: #si la jugada es impar es el turno de y
@@ -66,16 +65,16 @@ class Juego:
 
     
     def jugar(self):
-
-        while(self.jugadas < 9):
+        ganador = False
+        while(self.jugadas < 9 or not ganador):
             self.imprimir_tablero()
             jugador = self.turno()
             self.seleccionar_jugada(jugador)
             if self.comprobar(jugador):
                 print("Gana el jugador " + jugador)
-                break
-
-        print("Empate")
+                ganador = True
+        if not ganador:
+            print("Empate")
 
         
         
