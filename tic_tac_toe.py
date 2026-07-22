@@ -72,10 +72,13 @@ class Juego:
             jugador = self.turno()
             self.seleccionar_jugada(jugador)
             if self.comprobar(jugador):
+                print("Gana el jugador " + jugador)
                 break
 
+        print("Empate")
+
         
-        print("Gana el jugador " + jugador)
+        
 
 
 
