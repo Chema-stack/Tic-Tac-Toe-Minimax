@@ -48,17 +48,37 @@ class Juego:
         if self.jugadas == 9: #si se llega a nueve jugadas hay empate
             raise ValueError("Empate")
         elif self.jugadas % 2 == 0: #si la jugada es par o 0 es el turno de x
-            self.jugadas += 1 #se ha realizado una nueva jugada
+            
             return "x"
         else: #si la jugada es impar es el turno de y
-            self.jugadas += 1 #se ha realizado una nueva jugada
+            
             return "o"
         
-    def seleccionar_jugada(self): #pide al jugador la fila y columna
+    def seleccionar_jugada(self,jugador): #pide al jugador la fila y columna y realiza movimiento
         fila = input("Seleccione fila:")
         columna = input("Seleccione columna:")
+        fila, columna = self.normalizador(fila,columna) #normalizamos la jugada
+        try:
+            self.movimiento(jugador,fila,columna) #se realiza el movimiento
+        except ValueError:
+            print("Movimiento invalido")
+        self.jugadas += 1 #jugada realizada con exito
 
-        return fila, columna
+    
+    def jugar(self):
+
+        while(self.jugadas < 9):
+            self.imprimir_tablero()
+            jugador = self.turno()
+            self.seleccionar_jugada(jugador)
+            if self.comprobar(jugador):
+                break
+
+        
+        print("Gana el jugador" + jugador)
+
+
+
     
 
 
