@@ -55,14 +55,14 @@ class Juego:
             return "o"
         
     def seleccionar_jugada(self,jugador): #pide al jugador la fila y columna y realiza movimiento
-        fila = input("Seleccione fila:")
-        columna = input("Seleccione columna:")
-        fila, columna = self.normalizador(fila,columna) #normalizamos la jugada
+        fila = int(input("Seleccione fila:"))
+        columna = int(input("Seleccione columna:"))
         try:
             self.movimiento(jugador,fila,columna) #se realiza el movimiento
+            self.jugadas += 1 #jugada realizada con exito
         except ValueError:
             print("Movimiento invalido")
-        self.jugadas += 1 #jugada realizada con exito
+        
 
     
     def jugar(self):
@@ -75,11 +75,12 @@ class Juego:
                 break
 
         
-        print("Gana el jugador" + jugador)
+        print("Gana el jugador " + jugador)
 
 
 
-    
+prueba = Juego()
+prueba.jugar()
 
 
 
