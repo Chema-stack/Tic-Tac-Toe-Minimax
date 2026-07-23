@@ -1,3 +1,5 @@
+import os
+
 class Juego:
 
     def __init__(self):
@@ -60,21 +62,27 @@ class Juego:
             self.movimiento(jugador,fila,columna) #se realiza el movimiento
             self.jugadas += 1 #jugada realizada con exito
         except ValueError:
-            print("Movimiento invalido")
+            raise ValueError("Jugada no valida")
         
 
     
-    def jugar(self):
+    def jugar(self): #realiza el flujo de juego
         ganador = False
-        while(self.jugadas < 9):
-            self.imprimir_tablero()
-            jugador = self.turno()
-            self.seleccionar_jugada(jugador)
-            if self.comprobar(jugador):
+        while(self.jugadas < 9): #mientras haya menos de 9 jugadas
+            self.imprimir_tablero() #imprime el tablero
+            jugador = self.turno() #selecciona el jugador que le toca jugar
+            try:
+                self.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
+                os.system('clear') #borra la terminal para imprimir la nueva jugada
+            except ValueError:
+                os.system('clear') #borra la terminal para imprimir el error
+                print("Jugada no valida, introduzca de nuevo su jugada.") 
+            
+            if self.comprobar(jugador): #comprueba si hay un ganador
                 print("Gana el jugador " + jugador)
                 ganador = True
                 break
-        if not ganador:
+        if not ganador: #si se llega a 9 jugadas y no hay ganador, entonces hay empate
             print("Empate")
 
         
