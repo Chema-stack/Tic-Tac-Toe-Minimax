@@ -30,6 +30,27 @@ class Juego:
             print(" | ".join(fila))
         print()
 
+    def comprobar_minimax(self,tablero):
+        # 1. Comprobar Filas
+            for fila in self.tablero:
+                if fila[0] == fila[1] == fila[2] == jugador:
+                    return True
+        
+            # 2. Comprobar Columnas
+            for col in range(3):
+                if self.tablero[0][col] == self.tablero[1][col] == self.tablero[2][col] == jugador:
+                    return True
+        
+            # 3. Comprobar Diagonal Principal (de izquierda a derecha)
+            if self.tablero[0][0] == self.tablero[1][1] == self.tablero[2][2] == jugador:
+                return True
+        
+            # 4. Comprobar Diagonal Secundaria (de derecha a izquierda)
+            if self.tablero[0][2] == self.tablero[1][1] == self.tablero[2][0] == jugador:
+                return True
+        
+            return False
+
     def comprobar(self, jugador): #comprueba si hay 3 en raya
             # 1. Comprobar Filas
         for fila in self.tablero:
