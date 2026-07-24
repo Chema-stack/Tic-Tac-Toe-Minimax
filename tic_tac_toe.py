@@ -18,6 +18,12 @@ class Juego:
             self.tablero[fila][columna] = jugador #colocamos la ficha
         else:
             raise ValueError("Jugada no valida") #si la casilla esta ocupada salta excepcion
+
+    def posicion_libre(self): #esta funcion devuelve la primera posicion libre que encuentra
+        for i in range(3):
+            for j in range(3):
+                if self.tablero[i][j] == "-":
+                    return i, j
         
     def imprimir_tablero(self): #imprime tablero
         for fila in self.tablero:
