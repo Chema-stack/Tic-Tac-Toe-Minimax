@@ -67,6 +67,7 @@ class Juego:
 
     
     def jugar(self): #realiza el flujo de juego
+        os.system('clear') #borra terminal por estetica
         ganador = False
         while(self.jugadas < 9): #mientras haya menos de 9 jugadas
             self.imprimir_tablero() #imprime el tablero
