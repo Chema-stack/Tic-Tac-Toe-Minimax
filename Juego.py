@@ -62,4 +62,4 @@ class Juego:
 
 
 prueba = Juego()
-prueba.jugarjugar_1_vs_1()
+prueba.jugar_1_vs_1()

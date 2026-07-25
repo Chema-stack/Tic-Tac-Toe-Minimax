@@ -4,7 +4,7 @@ class Minimax:
 
 
     def __init__(self):
-        self.tres_en_raya = tic_tac_toe()        
+        self.tres_en_raya = tic_tac_toe.tic_tac_toe()        
 
     def algoritmo(self,tablero,jugadas,jugador_max):
 
