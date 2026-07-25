@@ -5,8 +5,9 @@ import os
 class Juego:
 
     def __init__(self):
-         self.inteligencia_artificial = Minimax()
-         self.tres_en_raya = tic_tac_toe()
+         self.tres_en_raya = tic_tac_toe.tic_tac_toe()
+         self.inteligencia_artificial = Minimax.Minimax()
+         
 
     def jugar_con_IA(self):
             #inteligencia_artificial = Minimax()
