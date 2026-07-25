@@ -6,28 +6,28 @@ class Juego:
 
     def __init__(self):
          self.inteligencia_artificial = Minimax()
-         tres_en_raya = tic_tac_toe()
+         self.tres_en_raya = tic_tac_toe()
 
     def jugar_con_IA(self):
-            inteligencia_artificial = Minimax()
+            #inteligencia_artificial = Minimax()
             os.system('clear') #borra terminal por estetica
             ganador = False
             while(self.jugadas < 9): #mientras haya menos de 9 jugadas
-                self.imprimir_tablero() #imprime el tablero
-                jugador = self.turno() #selecciona el jugador que le toca jugar
+                self.tres_en_raya.imprimir_tablero() #imprime el tablero
+                jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
                 if jugador == 'x':
                     try:
-                        self.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
+                        self.tres_en_raya.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
                         os.system('clear') #borra la terminal para imprimir la nueva jugada
                     except ValueError:
                         os.system('clear') #borra la terminal para imprimir el error
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else:
-                    puntuacion,fila,columna = inteligencia_artificial.algoritmo(self.tablero,self.jugadas,False)
+                    puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tablero,self.jugadas,False)
                     self.tres_en_raya.jugada_IA(fila,columna)
     
                 
-                if self.comprobar(jugador): #comprueba si hay un ganador
+                if self.tres_en_raya.comprobar(jugador): #comprueba si hay un ganador
                     print("Gana el jugador " + jugador)
                     ganador = True
                     break
@@ -38,16 +38,19 @@ class Juego:
             os.system('clear') #borra terminal por estetica
             ganador = False
             while(self.jugadas < 9): #mientras haya menos de 9 jugadas
-                self.imprimir_tablero() #imprime el tablero
-                jugador = self.turno() #selecciona el jugador que le toca jugar
+                self.tres_en_raya.imprimir_tablero() #imprime el tablero
+                jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
+                
                 try:
-                    self.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
+                    self.tres_en_raya.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
                     os.system('clear') #borra la terminal para imprimir la nueva jugada
                 except ValueError:
                     os.system('clear') #borra la terminal para imprimir el error
-                    print("Jugada no valida, introduzca de nuevo su jugada.") 
+                    print("Jugada no valida, introduzca de nuevo su jugada.")
                 
-                if self.comprobar(jugador): #comprueba si hay un ganador
+    
+                
+                if self.tres_en_raya.comprobar(jugador): #comprueba si hay un ganador
                     print("Gana el jugador " + jugador)
                     ganador = True
                     break

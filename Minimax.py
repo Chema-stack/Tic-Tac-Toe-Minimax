@@ -1,4 +1,5 @@
 import tic_tac_toe
+
 class Minimax:
 
 
