@@ -110,6 +110,9 @@ class Juego:
         if not ganador: #si se llega a 9 jugadas y no hay ganador, entonces hay empate
             print("Empate")
 
+    def jugada_IA(self,fila,columna):
+        self.tablero[fila][columna] = 'o'
+
     def jugar_con_IA(self):
         inteligencia_artificial = Minimax()
         os.system('clear') #borra terminal por estetica
