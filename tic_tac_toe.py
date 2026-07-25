@@ -94,6 +94,7 @@ class tic_tac_toe:
 
     def jugada_IA(self,fila,columna):
         self.tablero[fila][columna] = 'o'
+        self.jugadas += 1
 
       
 
