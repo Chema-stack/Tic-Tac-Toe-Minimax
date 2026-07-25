@@ -13,7 +13,7 @@ class Juego:
             #inteligencia_artificial = Minimax()
             os.system('clear') #borra terminal por estetica
             ganador = False
-            while(self.jugadas < 9): #mientras haya menos de 9 jugadas
+            while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
                 jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
                 if jugador == 'x':
@@ -38,7 +38,7 @@ class Juego:
     def jugar_1_vs_1(self): #realiza el flujo de juego
             os.system('clear') #borra terminal por estetica
             ganador = False
-            while(self.jugadas < 9): #mientras haya menos de 9 jugadas
+            while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
                 jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
                 
