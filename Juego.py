@@ -24,7 +24,7 @@ class Juego:
                         os.system('clear') #borra la terminal para imprimir el error
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else:
-                    puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tablero,self.jugadas,False)
+                    puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,self.tres_en_raya.jugadas,False)
                     self.tres_en_raya.jugada_IA(fila,columna)
     
                 
