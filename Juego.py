@@ -62,4 +62,4 @@ class Juego:
 
 
 prueba = Juego()
-prueba.jugar_1_vs_1()
+prueba.jugar_con_IA()
