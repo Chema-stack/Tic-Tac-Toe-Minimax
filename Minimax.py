@@ -3,7 +3,7 @@ class Minimax:
 
 
     def __init__(self):
-        tres_en_raya = tic_tac_toe()        
+        self.tres_en_raya = tic_tac_toe()        
 
     def algoritmo(self,tablero,jugadas,jugador_max):
 
@@ -22,12 +22,12 @@ class Minimax:
             for i in range(len(tablero)):
                 for j in range(len(tablero[i])):
                     if tablero[i][j] == '-':
-                        fila = i
-                        columna = j
+                        
                         tablero[i][j] = 'o'
                         jugadas += 1
                         evaluacion, _,_ = self.algoritmo(tablero,jugadas,False)
                         tablero[i][j] = '-'
+                        jugadas -= 1
                         
                         if evaluacion > evaluacion_maxima:
                             evaluacion_maxima = evaluacion
@@ -41,12 +41,12 @@ class Minimax:
             for i in range(len(tablero)):
                 for j in range(len(tablero[i])):
                     if tablero[i][j] == '-':
-                        fila = i
-                        columna = j
+                        
                         tablero[i][j] = 'x'
                         jugadas += 1
                         evaluacion,_,_ = self.algoritmo(tablero,jugadas,True)
                         tablero[i][j] = '-'
+                        jugadas -= 1
 
                         if evaluacion < evaluacion_minima:
                             evaluacion_minima = evaluacion
