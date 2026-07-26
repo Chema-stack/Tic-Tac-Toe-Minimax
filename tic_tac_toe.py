@@ -27,7 +27,7 @@ class tic_tac_toe:
             print(" | ".join(fila))
         print()
 
-    def comprobar_minimax(self,tablero,jugador):
+    def comprobar_minimax(self,tablero,jugador): #comprueba si hay 3 en raya para el algoritmo
         # 1. Comprobar Filas
         for fila in tablero:
             if fila[0] == fila[1] == fila[2] == jugador:
@@ -92,7 +92,7 @@ class tic_tac_toe:
     
     
 
-    def jugada_IA(self,fila,columna):
+    def jugada_IA(self,fila,columna): #Realiza una jugada de la IA
         self.tablero[fila][columna] = 'o'
         self.jugadas += 1
 

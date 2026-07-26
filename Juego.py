@@ -10,10 +10,8 @@ class Juego:
          self.inteligencia_artificial = Minimax.Minimax()
 
 
-    def borrar_pantalla(self):
+    def borrar_pantalla(self): #borra la consola, teniendo en cuenta el SO en el que te encuentras
          system_name = platform.system()
-
-         print(system_name)
 
          if system_name == "Windows":
             os.system('cls')
@@ -21,7 +19,7 @@ class Juego:
             os.system('clear')
                
 
-    def jugar_con_IA(self):
+    def jugar_con_IA(self): #flujo de juego contra la IA
             #inteligencia_artificial = Minimax()
             self.borrar_pantalla() #borra terminal por estetica
             ganador = False
@@ -35,9 +33,9 @@ class Juego:
                     except ValueError:
                         self.borrar_pantalla() #borra la terminal para imprimir el error
                         print("Jugada no valida, introduzca de nuevo su jugada.")
-                else:
-                    puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,True)
-                    self.tres_en_raya.jugada_IA(fila,columna)
+                else: #si la jugada es impar juega la IA
+                    puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,True) #La IA piensa su jugada
+                    self.tres_en_raya.jugada_IA(fila,columna) #La IA realiza su jugada
                     self.borrar_pantalla()
     
                 
