@@ -72,7 +72,3 @@ class Juego:
                 print("Empate")
 
 
-
-
-prueba = Juego()
-prueba.jugar_con_IA()
