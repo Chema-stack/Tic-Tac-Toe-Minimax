@@ -28,7 +28,7 @@ class Minimax:
                         
                         tablero[i][j] = 'o' #hace jugada
                         evaluacion, _,_ = self.algoritmo(tablero,False) #simula el juego con dicha jugada
-                        tablero[i][j] = '-' "Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
+                        tablero[i][j] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
                         
                         if evaluacion > evaluacion_maxima: #Si conseguimos una mejor jugada nos quedamos con la jugada
                             evaluacion_maxima = evaluacion
@@ -45,7 +45,7 @@ class Minimax:
                         
                         tablero[i][j] = 'x' #hace jugada
                         evaluacion,_,_ = self.algoritmo(tablero,True) #simula el juego con dicha jugada
-                        tablero[i][j] = '-' "Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
+                        tablero[i][j] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
 
                         if evaluacion < evaluacion_minima: #Si conseguimos una mejor jugada nos quedamos con la jugada
                             evaluacion_minima = evaluacion
