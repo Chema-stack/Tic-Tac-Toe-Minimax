@@ -1,17 +1,29 @@
 import Minimax
 import tic_tac_toe
 import os
+import platform
 
 class Juego:
 
     def __init__(self):
          self.tres_en_raya = tic_tac_toe.tic_tac_toe()
          self.inteligencia_artificial = Minimax.Minimax()
-         
+
+
+    def borrar_pantalla(self):
+         system_name = platform.system()
+
+         print(system_name)
+
+         if system_name == "Windows":
+            os.system('cls')
+         else:
+            os.system('clear')
+               
 
     def jugar_con_IA(self):
             #inteligencia_artificial = Minimax()
-            os.system('clear') #borra terminal por estetica
+            self.borrar_pantalla() #borra terminal por estetica
             ganador = False
             while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
@@ -19,14 +31,14 @@ class Juego:
                 if jugador == 'x':
                     try:
                         self.tres_en_raya.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
-                        os.system('clear') #borra la terminal para imprimir la nueva jugada
+                        self.borrar_pantalla()
                     except ValueError:
-                        os.system('clear') #borra la terminal para imprimir el error
+                        self.borrar_pantalla() #borra la terminal para imprimir el error
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else:
                     puntuacion,fila,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,True)
-                    print(puntuacion)
                     self.tres_en_raya.jugada_IA(fila,columna)
+                    self.borrar_pantalla()
     
                 
                 if self.tres_en_raya.comprobar(jugador): #comprueba si hay un ganador
@@ -37,7 +49,7 @@ class Juego:
                 print("Empate")
 
     def jugar_1_vs_1(self): #realiza el flujo de juego
-            os.system('clear') #borra terminal por estetica
+            self.borrar_pantalla() #borra terminal por estetica
             ganador = False
             while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
@@ -45,9 +57,9 @@ class Juego:
                 
                 try:
                     self.tres_en_raya.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
-                    os.system('clear') #borra la terminal para imprimir la nueva jugada
+                    self.borrar_pantalla() #borra la terminal para imprimir la nueva jugada
                 except ValueError:
-                    os.system('clear') #borra la terminal para imprimir el error
+                    self.borrar_pantalla() #borra la terminal para imprimir el error
                     print("Jugada no valida, introduzca de nuevo su jugada.")
                 
     
