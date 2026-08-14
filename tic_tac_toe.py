@@ -32,47 +32,89 @@ class tic_tac_toe:
         print()
 
     def comprobar_minimax(self,tablero,jugador): #comprueba si hay 3 en raya para el algoritmo
-        # 1. Comprobar Filas
-        for fila in tablero:
-            if fila[0] == fila[1] == fila[2] == jugador:
-                return True
-        
-        # 2. Comprobar Columnas
-        for col in range(3):
-            if tablero[0][col] == tablero[1][col] == tablero[2][col] == jugador:
-                return True
-        
-        # 3. Comprobar Diagonal Principal (de izquierda a derecha)
-        if tablero[0][0] == tablero[1][1] == tablero[2][2] == jugador:
-            return True
-        
-        # 4. Comprobar Diagonal Secundaria (de derecha a izquierda)
-        if tablero[0][2] == tablero[1][1] == tablero[2][0] == jugador:
-            return True
-        
+
+        FILAS = 6
+        COLUMNAS = 7
+
+        # 1. Comprobación HORIZONTAL (--)
+        for f in range(FILAS):
+            for c in range(COLUMNAS - 3):  # c va de 0 a 3 para no salirse del borde
+                if (tablero[f][c] == jugador and 
+                    tablero[f][c + 1] == jugador and 
+                    tablero[f][c + 2] == jugador and 
+                    tablero[f][c + 3] == jugador):
+                    return True
+
+        # 2. Comprobación VERTICAL (|)
+        for f in range(FILAS - 3):  # f va de 0 a 2 para no salirse por abajo
+            for c in range(COLUMNAS):
+                if (tablero[f][c] == jugador and 
+                    tablero[f + 1][c] == jugador and 
+                    tablero[f + 2][c] == jugador and 
+                    tablero[f + 3][c] == jugador):
+                    return True
+
+        # 3. Comprobación DIAGONAL DESCENDENTE (\)
+        for f in range(FILAS - 3):
+            for c in range(COLUMNAS - 3):
+                if (tablero[f][c] == jugador and 
+                    tablero[f + 1][c + 1] == jugador and 
+                    tablero[f + 2][c + 2] == jugador and 
+                    tablero[f + 3][c + 3] == jugador):
+                    return True
+
+        # 4. Comprobación DIAGONAL ASCENDENTE (/)
+        for f in range(3, FILAS):  # f empieza en 3 para poder subir 3 casillas
+            for c in range(COLUMNAS - 3):
+                if (tablero[f][c] == jugador and 
+                    tablero[f - 1][c + 1] == jugador and 
+                    tablero[f - 2][c + 2] == jugador and 
+                    tablero[f - 3][c + 3] == jugador):
+                    return True
+
         return False
 
     def comprobar(self, jugador): #comprueba si hay 3 en raya
-            # 1. Comprobar Filas
-        for fila in self.tablero:
-            if fila[0] == fila[1] == fila[2] == jugador:
-                return True
+        FILAS = 6
+        COLUMNAS = 7
 
-        # 2. Comprobar Columnas
-        for col in range(3):
-            if self.tablero[0][col] == self.tablero[1][col] == self.tablero[2][col] == jugador:
-                return True
+        # 1. Comprobación HORIZONTAL (--)
+        for f in range(FILAS):
+            for c in range(COLUMNAS - 3):  # c va de 0 a 3 para no salirse del borde
+                if (self.tablero[f][c] == jugador and 
+                    self.tablero[f][c + 1] == jugador and 
+                    self.tablero[f][c + 2] == jugador and 
+                    self.tablero[f][c + 3] == jugador):
+                    return True
 
-        # 3. Comprobar Diagonal Principal (de izquierda a derecha)
-        if self.tablero[0][0] == self.tablero[1][1] == self.tablero[2][2] == jugador:
-            return True
+        # 2. Comprobación VERTICAL (|)
+        for f in range(FILAS - 3):  # f va de 0 a 2 para no salirse por abajo
+            for c in range(COLUMNAS):
+                if (self.tablero[f][c] == jugador and 
+                    self.tablero[f + 1][c] == jugador and 
+                    self.tablero[f + 2][c] == jugador and 
+                    self.tablero[f + 3][c] == jugador):
+                    return True
 
-        # 4. Comprobar Diagonal Secundaria (de derecha a izquierda)
-        if self.tablero[0][2] == self.tablero[1][1] == self.tablero[2][0] == jugador:
-            return True
+        # 3. Comprobación DIAGONAL DESCENDENTE (\)
+        for f in range(FILAS - 3):
+            for c in range(COLUMNAS - 3):
+                if (self.tablero[f][c] == jugador and 
+                    self.tablero[f + 1][c + 1] == jugador and 
+                    self.tablero[f + 2][c + 2] == jugador and 
+                    self.tablero[f + 3][c + 3] == jugador):
+                    return True
 
-        return False
-    
+        # 4. Comprobación DIAGONAL ASCENDENTE (/)
+        for f in range(3, FILAS):  # f empieza en 3 para poder subir 3 casillas
+            for c in range(COLUMNAS - 3):
+                if (self.tablero[f][c] == jugador and 
+                    self.tablero[f - 1][c + 1] == jugador and 
+                    self.tablero[f - 2][c + 2] == jugador and 
+                    self.tablero[f - 3][c + 3] == jugador):
+                    return True
+
+        return False    
     def turno(self): #Alterna entre uno y otro
 
         
