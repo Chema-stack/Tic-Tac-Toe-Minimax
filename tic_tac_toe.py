@@ -4,7 +4,7 @@ import Minimax
 class tic_tac_toe:
 
     def __init__(self):
-        self.tablero = [["-" for _ in range(3)] for _ in range(3)]
+        self.tablero = [["-" for _ in range(7)] for _ in range(6)]
         self.jugadas = 0
 
     def normalizador(self, fila,columna): #Esta funcion normaliza los movimientos
