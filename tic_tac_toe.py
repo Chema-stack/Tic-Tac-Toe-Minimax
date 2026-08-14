@@ -1,6 +1,7 @@
 import os
 import Minimax
 
+
 class tic_tac_toe:
 
     def __init__(self):
@@ -17,12 +18,12 @@ class tic_tac_toe:
 
 
         for fila in range(5, -1, -1):
-            if self.tablero[fila][columna] == "-":  # O None/espacio según como representes el vacío
+            if self.tablero[fila][columna] == "-":  # si encuentra un espacio libre en la columna coloca
                 self.tablero[fila][columna] = jugador
                 return
 
         
-        raise ValueError("Jugada no valida") #si la casilla esta ocupada salta excepcion
+        raise ValueError("Jugada no valida") #si la columna esta ocupada salta excepcion
 
     
         

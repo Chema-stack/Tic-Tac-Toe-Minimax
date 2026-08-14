@@ -2,6 +2,7 @@ import Minimax
 import tic_tac_toe
 import os
 import platform
+import time
 
 class Juego:
 
@@ -23,7 +24,7 @@ class Juego:
             #inteligencia_artificial = Minimax()
             self.borrar_pantalla() #borra terminal por estetica
             ganador = False
-            while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
+            while(self.tres_en_raya.jugadas < 42): #mientras haya menos de 42 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
                 jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
                 if jugador == 'x':
@@ -49,16 +50,19 @@ class Juego:
     def jugar_1_vs_1(self): #realiza el flujo de juego
             self.borrar_pantalla() #borra terminal por estetica
             ganador = False
-            while(self.tres_en_raya.jugadas < 9): #mientras haya menos de 9 jugadas
+            while(self.tres_en_raya.jugadas < 42): #mientras haya menos de 42 jugadas
                 self.tres_en_raya.imprimir_tablero() #imprime el tablero
                 jugador = self.tres_en_raya.turno() #selecciona el jugador que le toca jugar
+                print("turno de "+jugador)
                 
                 try:
                     self.tres_en_raya.seleccionar_jugada(jugador) #el jugador selecciona la jugada que hara
                     self.borrar_pantalla() #borra la terminal para imprimir la nueva jugada
                 except ValueError:
                     self.borrar_pantalla() #borra la terminal para imprimir el error
+                    
                     print("Jugada no valida, introduzca de nuevo su jugada.")
+                    time.sleep(1)
                 
     
                 
