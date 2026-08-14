@@ -7,18 +7,22 @@ class tic_tac_toe:
         self.tablero = [["-" for _ in range(7)] for _ in range(6)]
         self.jugadas = 0
 
-    def normalizador(self, fila,columna): #Esta funcion normaliza los movimientos
-        return fila - 1, columna - 1 #Le quita a la fila y a la columna uno
+    def normalizador(self,columna): #Esta funcion normaliza los movimientos
+        return columna - 1 #Le quita a la fila y a la columna uno
                                     #para que entre en los limites de la matriz
 
-    def movimiento(self,jugador,fila,columna): #realiza un movimiento del juego
+    def movimiento(self,jugador,columna): #realiza un movimiento del juego
         
-        fila, columna = self.normalizador(fila,columna) #normalizamos la entrada
+        columna = self.normalizador(columna) #normalizamos la entrada
 
-        if self.tablero[fila][columna] == "-": #si no hay nada en dicha posicion
-            self.tablero[fila][columna] = jugador #colocamos la ficha
-        else:
-            raise ValueError("Jugada no valida") #si la casilla esta ocupada salta excepcion
+
+        for fila in range(5, -1, -1):
+            if self.tablero[fila][columna] == "-":  # O None/espacio según como representes el vacío
+                self.tablero[fila][columna] = jugador
+                return
+
+        
+        raise ValueError("Jugada no valida") #si la casilla esta ocupada salta excepcion
 
     
         
@@ -80,10 +84,9 @@ class tic_tac_toe:
             return "o"
         
     def seleccionar_jugada(self,jugador): #pide al jugador la fila y columna y realiza movimiento
-        fila = int(input("Seleccione fila:"))
         columna = int(input("Seleccione columna:"))
         try:
-            self.movimiento(jugador,fila,columna) #se realiza el movimiento
+            self.movimiento(jugador,columna) #se realiza el movimiento
             self.jugadas += 1 #jugada realizada con exito
         except ValueError:
             raise ValueError("Jugada no valida")
