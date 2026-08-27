@@ -142,8 +142,9 @@ class tic_tac_toe:
         for fila in range(5, -1, -1):
             if self.tablero[fila][columna] == "-":  # si encuentra un espacio libre en la columna coloca
                 self.tablero[fila][columna] = "o"
+                self.jugadas += 1
                 return
-        self.jugadas += 1
+        
 
       
 
