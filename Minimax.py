@@ -35,16 +35,16 @@ class Minimax:
                     if fila_disponible == -1:
                         continue
 
-                    tablero[fila_disponible][col] = 'o' #hace jugada
-                    evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
+                tablero[fila_disponible][col] = 'o' #hace jugada
+                evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
                         
                     
-                    tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
+                tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
                         
-                    if evaluacion > evaluacion_maxima: #Si conseguimos una mejor jugada nos quedamos con la jugada
-                        evaluacion_maxima = evaluacion
+                if evaluacion > evaluacion_maxima: #Si conseguimos una mejor jugada nos quedamos con la jugada
+                    evaluacion_maxima = evaluacion
                         
-                        mejor_columna = col
+                    mejor_columna = col
 
                         
             return evaluacion_maxima, mejor_columna #devolvemos la mejor jugada
@@ -60,16 +60,16 @@ class Minimax:
                     if fila_disponible == -1:
                         continue
 
-                    tablero[fila_disponible][col] = 'o' #hace jugada
-                    evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
+                tablero[fila_disponible][col] = 'x' #hace jugada
+                evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
                         
                     
-                    tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
+                tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
 
-                    if evaluacion < evaluacion_minima: #Si conseguimos una mejor jugada nos quedamos con la jugada
-                        evaluacion_minima = evaluacion
+                if evaluacion < evaluacion_minima: #Si conseguimos una mejor jugada nos quedamos con la jugada
+                    evaluacion_minima = evaluacion
                         
-                        mejor_columna = col
+                    mejor_columna = col
             return evaluacion_minima, mejor_columna #devolvemos la mejor jugada
         
 

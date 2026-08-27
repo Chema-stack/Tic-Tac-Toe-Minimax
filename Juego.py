@@ -36,7 +36,7 @@ class Juego:
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else: #si la jugada es impar juega la IA
                     puntuacion,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,True,4) #La IA piensa su jugada
-                    print(columna)
+                    
                     self.tres_en_raya.jugada_IA(columna) #La IA realiza su jugada
                     self.borrar_pantalla()
     
