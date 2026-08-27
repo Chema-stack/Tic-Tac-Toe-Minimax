@@ -138,8 +138,11 @@ class tic_tac_toe:
     
     
 
-    def jugada_IA(self,fila,columna): #Realiza una jugada de la IA
-        self.tablero[fila][columna] = 'o'
+    def jugada_IA(self,columna): #Realiza una jugada de la IA
+        for fila in range(5, -1, -1):
+            if self.tablero[fila][columna] == "-":  # si encuentra un espacio libre en la columna coloca
+                self.tablero[fila][columna] = "o"
+                return
         self.jugadas += 1
 
       
