@@ -32,8 +32,8 @@ class Minimax:
                         fila_disponible = fila
                         break
 
-                    if fila_disponible == -1:
-                        continue
+                if fila_disponible == -1:
+                    continue
 
                 tablero[fila_disponible][col] = 'o' #hace jugada
                 evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
@@ -57,11 +57,11 @@ class Minimax:
                         fila_disponible = fila
                         break
 
-                    if fila_disponible == -1:
-                        continue
+                if fila_disponible == -1:
+                    continue
 
                 tablero[fila_disponible][col] = 'x' #hace jugada
-                evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
+                evaluacion, _ = self.algoritmo(tablero,True,profundidad - 1) #simula el juego con dicha jugada
                         
                     
                 tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
