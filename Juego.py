@@ -35,7 +35,8 @@ class Juego:
                         self.borrar_pantalla() #borra la terminal para imprimir el error
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else: #si la jugada es impar juega la IA
-                    puntuacion,columna = self.inteligencia_artificial.algoritmo(self.tres_en_raya.tablero,True,4) #La IA piensa su jugada
+                    copia_tablero = [fila[:] for fila in self.tres_en_raya.tablero]
+                    puntuacion,columna = self.inteligencia_artificial.algoritmo(copia_tablero,True,4) #La IA piensa su jugada
                     
                     self.tres_en_raya.jugada_IA(columna) #La IA realiza su jugada
                     self.borrar_pantalla()
