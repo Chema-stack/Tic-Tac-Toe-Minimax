@@ -22,6 +22,8 @@ class Juego:
 
     def jugar_con_IA(self): #flujo de juego contra la IA
             #inteligencia_artificial = Minimax()
+            alpha = float('-inf')
+            beta = float('inf')
             self.borrar_pantalla() #borra terminal por estetica
             ganador = False
             while(self.tres_en_raya.jugadas < 42): #mientras haya menos de 42 jugadas
@@ -36,7 +38,7 @@ class Juego:
                         print("Jugada no valida, introduzca de nuevo su jugada.")
                 else: #si la jugada es impar juega la IA
                     copia_tablero = [fila[:] for fila in self.tres_en_raya.tablero]
-                    puntuacion,columna = self.inteligencia_artificial.algoritmo(copia_tablero,True,4) #La IA piensa su jugada
+                    puntuacion,columna = self.inteligencia_artificial.algoritmo(copia_tablero,True,7,alpha,beta) #La IA piensa su jugada
                     
                     self.tres_en_raya.jugada_IA(columna) #La IA realiza su jugada
                     self.borrar_pantalla()

@@ -144,17 +144,4 @@ class tic_tac_toe:
                 self.tablero[fila][columna] = "o"
                 self.jugadas += 1
                 return
-        
-
-      
-
-
-        
-        
-
-
-
-
-
-
-            
+          

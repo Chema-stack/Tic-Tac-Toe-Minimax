@@ -6,20 +6,17 @@ class Minimax:
     def __init__(self):
         self.tres_en_raya = tic_tac_toe.tic_tac_toe()        
 
-    def algoritmo(self,tablero,jugador_max,profundidad): 
+    def algoritmo(self,tablero,jugador_max,profundidad,alpha,beta): 
 
-        if self.tres_en_raya.comprobar_minimax(tablero,'x') or profundidad == 0: #si ganan las x
-            return self.heuristica(tablero), None
-        elif self.tres_en_raya.comprobar_minimax(tablero,'o'): #si ganan las o
-            return self.heuristica(tablero), None
-            
+        if self.tres_en_raya.comprobar_minimax(tablero, 'x') or \
+        self.tres_en_raya.comprobar_minimax(tablero, 'o') or \
+        profundidad == 0 or \
+        not any('-' in fila for fila in tablero):
 
-        casillas_libres = any('-' in fila for fila in tablero) #si hay empate
-        if not casillas_libres:
             return self.heuristica(tablero), None
         
         mejor_columna = None
-        #mejor_fila = None
+        
 
         if jugador_max: #si es el turno de max
             evaluacion_maxima = float('-inf')
@@ -36,7 +33,7 @@ class Minimax:
                     continue
 
                 tablero[fila_disponible][col] = 'o' #hace jugada
-                evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1) #simula el juego con dicha jugada
+                evaluacion, _ = self.algoritmo(tablero,False,profundidad - 1,alpha,beta) #simula el juego con dicha jugada
                         
                     
                 tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
@@ -45,6 +42,10 @@ class Minimax:
                     evaluacion_maxima = evaluacion
                         
                     mejor_columna = col
+
+                alpha = max(alpha,evaluacion) #poda del arbol
+                if beta <= alpha:
+                    break
 
                         
             return evaluacion_maxima, mejor_columna #devolvemos la mejor jugada
@@ -61,7 +62,7 @@ class Minimax:
                     continue
 
                 tablero[fila_disponible][col] = 'x' #hace jugada
-                evaluacion, _ = self.algoritmo(tablero,True,profundidad - 1) #simula el juego con dicha jugada
+                evaluacion, _ = self.algoritmo(tablero,True,profundidad - 1,alpha,beta) #simula el juego con dicha jugada
                         
                     
                 tablero[fila_disponible][col] = '-' #"Deshacemos jugada para seguir buscando en el espectro de busqueda (Backtracking)"
@@ -70,6 +71,11 @@ class Minimax:
                     evaluacion_minima = evaluacion
                         
                     mejor_columna = col
+
+                beta = min(beta,evaluacion) #poda del arbol
+                if beta <= alpha:
+                    break
+
             return evaluacion_minima, mejor_columna #devolvemos la mejor jugada
         
 
