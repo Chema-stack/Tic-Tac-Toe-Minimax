@@ -45,6 +45,7 @@ class Juego:
     
                 
                 if self.tres_en_raya.comprobar(jugador): #comprueba si hay un ganador
+                    self.tres_en_raya.imprimir_tablero()
                     print("Gana el jugador " + jugador)
                     ganador = True
                     break
