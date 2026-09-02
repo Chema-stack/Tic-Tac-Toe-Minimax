@@ -13,7 +13,7 @@ class Minimax:
         profundidad == 0 or \
         not any('-' in fila for fila in tablero):
 
-            return self.heuristica(tablero), None
+            return self.heuristica(tablero, profundidad), None
         
         mejor_columna = None
         
@@ -79,7 +79,7 @@ class Minimax:
             return evaluacion_minima, mejor_columna #devolvemos la mejor jugada
         
 
-    def evaluar_ventana(self, ventana):
+    def evaluar_ventana(self, ventana, profundidad):
         puntuacion = 0
         
 
@@ -88,18 +88,20 @@ class Minimax:
         count_vacias = ventana.count("-")
 
         if count_ia == 4:
-            puntuacion += 100000
+            puntuacion += 100000 + profundidad
         elif count_ia == 3 and count_vacias == 1:
-            puntuacion += 5
+            puntuacion += 10
         elif count_ia == 2 and count_vacias == 2:
             puntuacion += 2
 
-        if count_op == 3 and count_vacias == 1:
-            puntuacion -= 4 # Penaliza dejar al rival a una ficha de ganar
+        if count_op == 4:
+            puntuacion -= 100000 + profundidad  # Penalización masiva si el rival gana
+        elif count_op == 3 and count_vacias == 1:
+            puntuacion -= 80 + profundidad     # Bloqueo urgente: penaliza más si ocurre pronto
 
         return puntuacion
 
-    def heuristica(self, tablero):
+    def heuristica(self, tablero, profundidad):
         ficha_ia = 'o'
         ficha_oponente = 'x'
         puntuacion = 0
@@ -115,23 +117,23 @@ class Minimax:
         for f in range(FILAS):
             for c in range(COLUMNAS - 3):
                 ventana = [tablero[f][c + i] for i in range(4)]
-                puntuacion += self.evaluar_ventana(ventana)
+                puntuacion += self.evaluar_ventana(ventana, profundidad)
 
         # 3. Evaluación VERTICAL
         for f in range(FILAS - 3):
             for c in range(COLUMNAS):
                 ventana = [tablero[f + i][c] for i in range(4)]
-                puntuacion += self.evaluar_ventana(ventana)
+                puntuacion += self.evaluar_ventana(ventana, profundidad)
         # 4. Evaluación DIAGONAL DESCENDENTE (\)
         for f in range(FILAS - 3):
             for c in range(COLUMNAS - 3):
                 ventana = [tablero[f + i][c + i] for i in range(4)]
-                puntuacion += self.evaluar_ventana(ventana)
+                puntuacion += self.evaluar_ventana(ventana, profundidad)
 
         # 5. Evaluación DIAGONAL ASCENDENTE (/)
         for f in range(3, FILAS):
             for c in range(COLUMNAS - 3):
                 ventana = [tablero[f - i][c + i] for i in range(4)]
-                puntuacion += self.evaluar_ventana(ventana)
+                puntuacion += self.evaluar_ventana(ventana, profundidad)
 
         return puntuacion
