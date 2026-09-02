@@ -116,6 +116,7 @@ class tic_tac_toe:
                     return True
 
         return False    
+
     def turno(self): #Alterna entre uno y otro
 
         
