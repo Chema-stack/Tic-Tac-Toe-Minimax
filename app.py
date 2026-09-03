@@ -5,7 +5,7 @@ from tic_tac_toe import tic_tac_toe
 
 app = FastAPI(title="Conecta 4 AI API")
 ia = Minimax()
-mecanicas = tic_tac_toe()
+
 
 # @app.get('/')
 # async def read_root():
@@ -28,7 +28,7 @@ def estado_api():
 
 @app.post("/api/movimiento-ia")
 def jugar_IA(solicitud: SolicitudJugada):
-
+    mecanicas = tic_tac_toe()
     mecanicas.tablero = solicitud.tablero
     columna_jugador = solicitud.columna_jugador
 
@@ -54,11 +54,11 @@ def jugar_IA(solicitud: SolicitudJugada):
     mecanicas.jugada_IA(columna) #El algoritmo realiza su jugada
     
     if mecanicas.comprobar("o"): #se comprueba si gana el algoritmo
-        return {"tablero": mecanicas.tablero, "estado": "GANA_o"}
+        return {"tablero": mecanicas.tablero, "estado": "GANA_o", "columna_ia": columna}
 
 
     if mecanicas.contar_fichas == 42: #comprueba si hay empate
-        return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
+        return {"tablero": mecanicas.tablero, "estado": "EMPATE", "columna_ia": columna}
     
     #si no hay empate y nadie gana la partida sigue
     return{"tablero": mecanicas.tablero, "estado": "EN_PROCESO", "columna_ia": columna}
