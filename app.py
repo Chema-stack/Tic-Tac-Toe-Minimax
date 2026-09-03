@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from Minimax import Minimax
 from tic_tac_toe import tic_tac_toe
@@ -33,13 +33,17 @@ def jugar_IA(solicitud: SolicitudJugada):
     columna_jugador = solicitud.columna_jugador
 
     #El jugador realiza su movimiento
-    mecanicas.movimiento(columna_jugador,"x")
-    mecanicas.jugadas +=1
+    try:
+        mecanicas.movimiento(columna_jugador, "x")
+    except Exception as e:
+        # Devuelve un HTTP 400 con el mensaje de error que lanza tu método
+        raise HTTPException(status_code=400, detail=str(e))
+    
 
     if mecanicas.comprobar("x"): #comprueba si gana el jugador
         return {"tablero": mecanicas.tablero, "estado": "GANA_x"}
 
-    if mecanicas.jugadas == 42: #comprueba si hay empate
+    if mecanicas.contar_fichas == 42: #comprueba si hay empate
         return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
     
     alpha = float('-inf')
@@ -48,12 +52,12 @@ def jugar_IA(solicitud: SolicitudJugada):
     copia_tablero = [fila[:] for fila in mecanicas.tablero] #copia profunda del tablero
     puntuacion, columna = ia.algoritmo(copia_tablero,True,7,alpha,beta) #El algoritmo piensa su jugada
     mecanicas.jugada_IA(columna) #El algoritmo realiza su jugada
-    mecanicas.jugadas +=1
+    
     if mecanicas.comprobar("o"): #se comprueba si gana el algoritmo
         return {"tablero": mecanicas.tablero, "estado": "GANA_o"}
 
 
-    if mecanicas.jugadas == 42: #comprueba si hay empate
+    if mecanicas.contar_fichas == 42: #comprueba si hay empate
         return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
     
     #si no hay empate y nadie gana la partida sigue
