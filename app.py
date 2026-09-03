@@ -41,10 +41,10 @@ def jugar_IA(solicitud: SolicitudJugada):
     
 
     if mecanicas.comprobar("x"): #comprueba si gana el jugador
-        return {"tablero": mecanicas.tablero, "estado": "GANA_x"}
+        return {"tablero": mecanicas.tablero, "estado": "GANA_x","columna_ia":None}
 
-    if mecanicas.contar_fichas == 42: #comprueba si hay empate
-        return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
+    if mecanicas.contar_fichas() == 42: #comprueba si hay empate
+        return {"tablero": mecanicas.tablero, "estado": "EMPATE","columna_ia":None}
     
     alpha = float('-inf')
     beta = float('inf')
@@ -57,7 +57,7 @@ def jugar_IA(solicitud: SolicitudJugada):
         return {"tablero": mecanicas.tablero, "estado": "GANA_o", "columna_ia": columna}
 
 
-    if mecanicas.contar_fichas == 42: #comprueba si hay empate
+    if mecanicas.contar_fichas() == 42: #comprueba si hay empate
         return {"tablero": mecanicas.tablero, "estado": "EMPATE", "columna_ia": columna}
     
     #si no hay empate y nadie gana la partida sigue
