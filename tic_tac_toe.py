@@ -137,7 +137,17 @@ class tic_tac_toe:
         
 
     def contar_fichas(self):
-        
+
+        fichas = 0
+
+        for fila in self.tablero:
+            for casilla in fila:
+                if casilla == "x" or casilla == "o":
+                    fichas +=1
+
+        return fichas
+
+
     
 
     def jugada_IA(self,columna): #Realiza una jugada de la IA
