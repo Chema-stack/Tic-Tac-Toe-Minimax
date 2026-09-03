@@ -136,7 +136,8 @@ class tic_tac_toe:
             raise ValueError("Jugada no valida")
         
 
-    
+    def contar_fichas(self):
+        
     
 
     def jugada_IA(self,columna): #Realiza una jugada de la IA

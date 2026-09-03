@@ -12,8 +12,8 @@ mecanicas = tic_tac_toe()
 #     return{"message": "Hola"}
 
 
-class SolicitudJugada(BaseModel):
-    tablero: list[list[str]]
+class SolicitudJugada(BaseModel): #consigue la columnna en la que hace click el usuario
+    tablero: list[list[str]] 
     columna_jugador: int
 
 
@@ -27,18 +27,35 @@ def estado_api():
 
 
 @app.post("/api/movimiento-ia")
-def jugar(solicitud: SolicitudJugada):
+def jugar_IA(solicitud: SolicitudJugada):
 
-    tablero = solicitud.tablero
+    mecanicas.tablero = solicitud.tablero
     columna_jugador = solicitud.columna_jugador
 
+    #El jugador realiza su movimiento
     mecanicas.movimiento(columna_jugador,"x")
+    mecanicas.jugadas +=1
+
+    if mecanicas.comprobar("x"): #comprueba si gana el jugador
+        return {"tablero": mecanicas.tablero, "estado": "GANA_x"}
+
+    if mecanicas.jugadas == 42: #comprueba si hay empate
+        return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
     
     alpha = float('-inf')
     beta = float('inf')
 
-    puntuacion, columna = ia.algoritmo(solicitud.tablero,True,7,alpha,beta)
+    copia_tablero = [fila[:] for fila in mecanicas.tablero] #copia profunda del tablero
+    puntuacion, columna = ia.algoritmo(copia_tablero,True,7,alpha,beta) #El algoritmo piensa su jugada
+    mecanicas.jugada_IA(columna) #El algoritmo realiza su jugada
+    mecanicas.jugadas +=1
+    if mecanicas.comprobar("o"): #se comprueba si gana el algoritmo
+        return {"tablero": mecanicas.tablero, "estado": "GANA_o"}
+
+
+    if mecanicas.jugadas == 42: #comprueba si hay empate
+        return {"tablero": mecanicas.tablero, "estado": "EMPATE"}
     
-    return {
-        "columna": columna
-    }
+    #si no hay empate y nadie gana la partida sigue
+    return{"tablero": mecanicas.tablero, "estado": "EN_PROCESO", "columna_ia": columna}
+    
