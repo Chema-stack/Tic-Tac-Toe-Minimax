@@ -30,11 +30,11 @@ def estado_api():
 def jugar_IA(solicitud: SolicitudJugada):
     mecanicas = tic_tac_toe()
     mecanicas.tablero = solicitud.tablero
-    columna_jugador = solicitud.columna_jugador
+    columna_jugador = int(solicitud.columna_jugador)
 
     #El jugador realiza su movimiento
     try:
-        mecanicas.movimiento(columna_jugador, "x")
+        mecanicas.movimiento( "x", columna_jugador)
     except Exception as e:
         # Devuelve un HTTP 400 con el mensaje de error que lanza tu método
         raise HTTPException(status_code=400, detail=str(e))
