@@ -2,27 +2,11 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from Minimax import Minimax
 from tic_tac_toe import tic_tac_toe
+from SolicitudJugada import SolicitudJugada
+
 
 app = FastAPI(title="Conecta 4 AI API")
 ia = Minimax()
-
-
-# @app.get('/')
-# async def read_root():
-#     return{"message": "Hola"}
-
-
-class SolicitudJugada(BaseModel): #consigue la columnna en la que hace click el usuario
-    tablero: list[list[str]] 
-    columna_jugador: int
-
-
-
-@app.get("/")
-def estado_api():
-    """Ruta básica para comprobar que la API está viva."""
-    return {"mensaje": "API de Conecta 4 activa y funcionando"}
-
 
 
 
