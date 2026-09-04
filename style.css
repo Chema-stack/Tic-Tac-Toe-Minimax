@@ -1,0 +1,62 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e2e;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 { margin-bottom: 5px; }
+h2 { color: #a6adc8; margin-bottom: 20px; }
+
+/* El tablero azul de Conecta 4 */
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(7, 70px);
+    grid-template-rows: repeat(6, 70px);
+    gap: 10px;
+    background-color: #2563eb;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    margin: 0 auto;
+}
+
+/* Cada casilla/circulo */
+.casilla {
+    width: 70px;
+    height: 70px;
+    background-color: #1e1e2e;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.casilla:hover {
+    filter: brightness(1.2);
+}
+
+/* Fichas */
+.casilla.humano { background-color: #ef4444; } /* Rojo */
+.casilla.ia { background-color: #eab308; }     /* Amarillo */
+
+button {
+    margin-top: 25px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover { background-color: #059669; }
