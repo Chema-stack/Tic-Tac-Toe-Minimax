@@ -24,7 +24,7 @@ app.add_middleware(
 def jugar_IA(solicitud: SolicitudJugada):
     mecanicas = tic_tac_toe()
     mecanicas.tablero = solicitud.tablero
-    columna_jugador = int(solicitud.columna_jugador)
+#    columna_jugador = int(solicitud.columna_jugador)
 
     #El jugador realiza su movimiento
 #    try:
