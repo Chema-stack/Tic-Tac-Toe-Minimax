@@ -29,6 +29,24 @@ h2 { color: #a6adc8; margin-bottom: 20px; }
     margin: 0 auto;
 }
 
+/* Cuando el texto contiene la palabra "rojas" */
+#estado {
+    transition: color 0.3s ease; /* Para que el cambio de color sea suave */
+}
+
+/* Selección por texto parcial usando CSS */
+h2[id="estado"] {
+    color: #ef4444; /* Color rojo por defecto */
+}
+
+#estado.humano {
+    color: #ef4444; /* Rojo */
+}
+
+#estado.ia {
+    color: #eab308; /* Amarillo */
+}
+
 /* Cada casilla/circulo */
 .casilla {
     width: 70px;
