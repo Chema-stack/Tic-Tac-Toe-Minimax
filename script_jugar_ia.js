@@ -55,10 +55,10 @@ async function realizarJugadaHumano(col) {
     textoEstado.innerText = "La IA está pensando...";
     
     try {
-        const respuesta = await fetch("http://127.0.0.1:8000/api/app.py", {
+        const respuesta = await fetch("http://127.0.0.1:8000/api/movimiento-ia", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ tablero: tablero, columna_jugador: col })
+            body: JSON.stringify({ tablero: tablero})
         });
 
         const data = await respuesta.json();
