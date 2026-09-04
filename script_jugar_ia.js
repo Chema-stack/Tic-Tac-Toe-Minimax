@@ -62,7 +62,7 @@ async function realizarJugadaHumano(col) {
         });
 
         const data = await respuesta.json();
-        const colIA = data.columna;
+        const colIA = data.columna_ia;
 
         // Aplicar la ficha 'o' de la IA en la columna recibida
         for (let r = FILAS - 1; r >= 0; r--) {
