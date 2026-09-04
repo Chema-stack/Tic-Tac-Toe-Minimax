@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Conecta 4 - vs Maquina</title>
-  <!-- Enlace al archivo CSS externo -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta 4 - vs IA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Conecta 4</h1>
+        <h2 id="estado">Tu turno (Fichas rojas)</h2>
+        
+        <div id="tablero" class="tablero"></div>
 
-  <h1>Conecta 4</h1>
-  <div id="status">Turno del Jugador</div>
-  
-  <!-- Contenedor del tablero -->
-  <div id="board"></div>
+        <button id="btn-reiniciar" onclick="reiniciarJuego()">Nueva Partida</button>
+    </div>
 
-  <!-- Enlace al archivo JavaScript externo -->
-  <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
