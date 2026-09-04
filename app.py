@@ -17,11 +17,11 @@ def jugar_IA(solicitud: SolicitudJugada):
     columna_jugador = int(solicitud.columna_jugador)
 
     #El jugador realiza su movimiento
-    try:
-        mecanicas.movimiento( "x", columna_jugador)
-    except Exception as e:
-        # Devuelve un HTTP 400 con el mensaje de error que lanza tu método
-        raise HTTPException(status_code=400, detail=str(e))
+#    try:
+#        mecanicas.movimiento( "x", columna_jugador)
+#    except Exception as e:
+         #Devuelve un HTTP 400 con el mensaje de error que lanza tu método
+#        raise HTTPException(status_code=400, detail=str(e))
     
 
     if mecanicas.comprobar("x"): #comprueba si gana el jugador
