@@ -3,11 +3,21 @@ from pydantic import BaseModel
 from Minimax import Minimax
 from tic_tac_toe import tic_tac_toe
 from SolicitudJugada import SolicitudJugada
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI(title="Conecta 4 AI API")
 ia = Minimax()
 
+
+# PERMITIR PETICIONES DESDE EL FRONTEND
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite peticiones desde cualquier origen
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite POST, GET, OPTIONS, etc.
+    allow_headers=["*"],
+)
 
 
 @app.post("/api/movimiento-ia")
