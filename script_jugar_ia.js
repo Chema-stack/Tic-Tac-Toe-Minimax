@@ -62,8 +62,7 @@ async function realizarJugadaHumano(col) {
 
         const data = await respuesta.json();
         
-        // 1. Evaluar si el humano ganó ANTES de que la IA tire
-        if (procesarEstadoJuego(data.estado)) return;
+        
 
         // 2. Colocar ficha de la IA si el juego sigue
         if (data.columna_ia !== undefined && data.columna_ia !== null) {
@@ -75,7 +74,7 @@ async function realizarJugadaHumano(col) {
             }
         }
 
-        // 3. Evaluar si la IA ganó o hubo empate
+        // 3. Evaluar si hubo ganador y quien gano
         procesarEstadoJuego(data.estado);
 
     } catch (error) {
