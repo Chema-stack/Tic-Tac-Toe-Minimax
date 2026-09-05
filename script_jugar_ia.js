@@ -36,7 +36,6 @@ function actualizarGUI() {
 async function realizarJugadaHumano(col) {
     if (juegoTerminado) return;
 
-    // Buscar la primera casilla libre desde abajo (gravedad)
     let filaValida = -1;
     for (let r = FILAS - 1; r >= 0; r--) {
         if (tablero[r][col] === '-') {
@@ -45,41 +44,78 @@ async function realizarJugadaHumano(col) {
         }
     }
 
-    if (filaValida === -1) return; // Columna llena
+    if (filaValida === -1) return;
 
-    // Aplicar la ficha 'x' del humano
+    // Colocar ficha del humano
     tablero[filaValida][col] = 'x';
     actualizarGUI();
 
-    // Turno de la IA: Llamar a FastAPI
     textoEstado.innerText = "La IA está pensando...";
+    textoEstado.style.color = "yellow"
     
     try {
         const respuesta = await fetch("http://127.0.0.1:8000/api/movimiento-ia", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ tablero: tablero})
+            body: JSON.stringify({ tablero: tablero })
         });
 
         const data = await respuesta.json();
-        const colIA = data.columna_ia;
+        
+        // 1. Evaluar si el humano ganó ANTES de que la IA tire
+        if (procesarEstadoJuego(data.estado)) return;
 
-        // Aplicar la ficha 'o' de la IA en la columna recibida
-        for (let r = FILAS - 1; r >= 0; r--) {
-            if (tablero[r][colIA] === '-') {
-                tablero[r][colIA] = 'o';
-                break;
+        // 2. Colocar ficha de la IA si el juego sigue
+        if (data.columna_ia !== undefined && data.columna_ia !== null) {
+            for (let r = FILAS - 1; r >= 0; r--) {
+                if (tablero[r][data.columna_ia] === '-') {
+                    tablero[r][data.columna_ia] = 'o';
+                    break;
+                }
             }
         }
-        
-        actualizarGUI();
-        textoEstado.innerText = "Tu turno (Fichas rojas)";
+
+        // 3. Evaluar si la IA ganó o hubo empate
+        procesarEstadoJuego(data.estado);
 
     } catch (error) {
         console.error("Error conectando con la API:", error);
         textoEstado.innerText = "Error de conexión con la IA";
     }
 }
+
+//  función exclusiva para gestionar mensajes y finalización del juego
+function procesarEstadoJuego(estado) {
+    console.log(estado);
+    if (estado === "GANA_x") {
+        console.log(estado);
+        textoEstado.innerText = "¡Gana el jugador rojo!";
+        juegoTerminado = true;
+        actualizarGUI();
+        return true; // Indica que el juego terminó
+    } 
+    
+    if (estado === "GANA_o") {
+        textoEstado.innerText = "¡Gana el jugador amarillo!";
+        juegoTerminado = true;
+        actualizarGUI();
+        return true;
+    } 
+    
+    if (estado === "EMPATE") {
+        textoEstado.innerText = "¡Empate!";
+        juegoTerminado = true;
+        actualizarGUI();
+        return true;
+    }
+
+    // El juego continúa
+    textoEstado.innerText = "Tu turno (Fichas rojas)";
+    textoEstado.style.color = "red"
+    actualizarGUI();
+    return false;
+}
+
 
 function reiniciarJuego() {
     tablero = Array(FILAS).fill(null).map(() => Array(COLUMNAS).fill('-'));
