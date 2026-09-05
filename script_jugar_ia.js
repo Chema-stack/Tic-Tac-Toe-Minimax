@@ -5,6 +5,7 @@ let juegoTerminado = false;
 
 const contenedorTablero = document.getElementById('tablero');
 const textoEstado = document.getElementById('estado');
+const textoVictoria = document.getElementById('mensaje-victoria');
 
 // Inicializar el tablero en pantalla
 function crearTableroGUI() {
@@ -85,24 +86,28 @@ async function realizarJugadaHumano(col) {
 
 //  función exclusiva para gestionar mensajes y finalización del juego
 function procesarEstadoJuego(estado) {
-    console.log(estado);
     if (estado === "GANA_x") {
-        console.log(estado);
-        textoEstado.innerText = "¡Gana el jugador rojo!";
+        textoVictoria.innerText = "¡Gana el jugador rojo!";
+        textoVictoria.style.color = "red";
+        textoVictoria.style.display = "block";
         juegoTerminado = true;
         actualizarGUI();
         return true; // Indica que el juego terminó
     } 
     
     if (estado === "GANA_o") {
-        textoEstado.innerText = "¡Gana el jugador amarillo!";
+        textoVictoria.innerText = "¡Gana el jugador amarillo!";
+        textoVictoria.style.color = "yellow";
+        textoVictoria.style.display = "block";
         juegoTerminado = true;
         actualizarGUI();
         return true;
     } 
     
     if (estado === "EMPATE") {
-        textoEstado.innerText = "¡Empate!";
+        textoVictoria.innerText = "¡Empate!";
+        textoVictoria.style.color = "#38bdf8";
+        textoVictoria.style.display = "block";
         juegoTerminado = true;
         actualizarGUI();
         return true;
@@ -114,9 +119,16 @@ function procesarEstadoJuego(estado) {
     actualizarGUI();
     return false;
 }
+function limpiarResultado() {
+    textoVictoria.innerText = "";
+    
+    // Oculta el div para volver a centrar todo al reiniciar
+    textoVictoria.style.display = "none"; 
+}
 
 
 function reiniciarJuego() {
+    limpiarResultado();
     tablero = Array(FILAS).fill(null).map(() => Array(COLUMNAS).fill('-'));
     juegoTerminado = false;
     textoEstado.innerText = "Tu turno (Fichas rojas)";

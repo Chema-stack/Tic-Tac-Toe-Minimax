@@ -78,3 +78,26 @@ button {
 }
 
 button:hover { background-color: #059669; }
+
+/* Título principal del juego */
+.container h2 {
+    font-size: 2.5rem; /* ~40px */
+    margin-bottom: 10px;
+}
+
+/* Indicador de turno / estado */
+#estado {
+    font-size: 1.5rem; /* ~24px */
+    font-weight: 600;
+}
+
+/* Mensaje de victoria (Destacado) */
+#mensaje-victoria {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    
+    /* Oculto por defecto para que todo quede centrado */
+    display: none; 
+}
