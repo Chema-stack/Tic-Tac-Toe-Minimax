@@ -142,6 +142,7 @@ function reiniciarJuego() {
     limpiarResultado();
     tablero = Array(FILAS).fill(null).map(() => Array(COLUMNAS).fill('-'));
     juegoTerminado = false;
+    esperandoIA = false;
     textoEstado.innerText = "Tu turno (Fichas rojas)";
     actualizarGUI();
 }
