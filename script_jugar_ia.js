@@ -87,6 +87,7 @@ async function realizarJugadaHumano(col) {
 //  función exclusiva para gestionar mensajes y finalización del juego
 function procesarEstadoJuego(estado) {
     if (estado === "GANA_x") {
+        textoEstado.style.display = "none";
         textoVictoria.innerText = "¡Gana el jugador rojo!";
         textoVictoria.style.color = "red";
         textoVictoria.style.display = "block";
@@ -96,6 +97,7 @@ function procesarEstadoJuego(estado) {
     } 
     
     if (estado === "GANA_o") {
+        textoEstado.style.display = "none";
         textoVictoria.innerText = "¡Gana el jugador amarillo!";
         textoVictoria.style.color = "yellow";
         textoVictoria.style.display = "block";
@@ -105,6 +107,7 @@ function procesarEstadoJuego(estado) {
     } 
     
     if (estado === "EMPATE") {
+        textoEstado.style.display = "none";
         textoVictoria.innerText = "¡Empate!";
         textoVictoria.style.color = "#38bdf8";
         textoVictoria.style.display = "block";
@@ -120,6 +123,8 @@ function procesarEstadoJuego(estado) {
     return false;
 }
 function limpiarResultado() {
+    textoEstado.style.color = "red"
+    textoEstado.style.display = "block";
     textoVictoria.innerText = "";
     
     // Oculta el div para volver a centrar todo al reiniciar

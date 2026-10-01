@@ -89,6 +89,9 @@ button:hover { background-color: #059669; }
 #estado {
     font-size: 1.5rem; /* ~24px */
     font-weight: 600;
+    
+    /*Por defecto aparece*/
+    display: block;  
 }
 
 /* Mensaje de victoria (Destacado) */
