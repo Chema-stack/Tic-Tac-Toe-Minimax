@@ -2,6 +2,7 @@ const FILAS = 6;
 const COLUMNAS = 7;
 let tablero = Array(FILAS).fill(null).map(() => Array(COLUMNAS).fill('-'));
 let juegoTerminado = false;
+let esperandoIA = false;
 
 const contenedorTablero = document.getElementById('tablero');
 const textoEstado = document.getElementById('estado');
@@ -35,7 +36,8 @@ function actualizarGUI() {
 
 // Manejar el clic del usuario
 async function realizarJugadaHumano(col) {
-    if (juegoTerminado) return;
+    // No permitir jugar si el juego terminó o la IA está pensando
+    if (juegoTerminado || esperandoIA) return;
 
     let filaValida = -1;
     for (let r = FILAS - 1; r >= 0; r--) {
@@ -51,9 +53,12 @@ async function realizarJugadaHumano(col) {
     tablero[filaValida][col] = 'x';
     actualizarGUI();
 
+    // Bloquear el tablero mientras piensa la IA
+    esperandoIA = true;
+
     textoEstado.innerText = "La IA está pensando...";
-    textoEstado.style.color = "yellow"
-    
+    textoEstado.style.color = "yellow";
+
     try {
         const respuesta = await fetch("http://127.0.0.1:8000/api/movimiento-ia", {
             method: "POST",
@@ -62,10 +67,8 @@ async function realizarJugadaHumano(col) {
         });
 
         const data = await respuesta.json();
-        
-        
 
-        // 2. Colocar ficha de la IA si el juego sigue
+        // Colocar ficha de la IA si el juego sigue
         if (data.columna_ia !== undefined && data.columna_ia !== null) {
             for (let r = FILAS - 1; r >= 0; r--) {
                 if (tablero[r][data.columna_ia] === '-') {
@@ -75,12 +78,15 @@ async function realizarJugadaHumano(col) {
             }
         }
 
-        // 3. Evaluar si hubo ganador y quien gano
+        // Evaluar si hubo ganador y quien ganó
         procesarEstadoJuego(data.estado);
 
     } catch (error) {
         console.error("Error conectando con la API:", error);
         textoEstado.innerText = "Error de conexión con la IA";
+    } finally {
+        // Volver a permitir jugar cuando la IA haya terminado
+        esperandoIA = false;
     }
 }
 
