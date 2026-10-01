@@ -1,4 +1,4 @@
-import Juego
+import core.Juego as Juego
 
 partida = Juego.Juego()
 

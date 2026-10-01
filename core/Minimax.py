@@ -1,4 +1,4 @@
-import tic_tac_toe
+import core.tic_tac_toe as tic_tac_toe
 
 class Minimax:
 

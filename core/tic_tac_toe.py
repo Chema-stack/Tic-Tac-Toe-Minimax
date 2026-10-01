@@ -1,5 +1,5 @@
 import os
-import Minimax
+import core.Minimax as Minimax
 
 
 class tic_tac_toe:

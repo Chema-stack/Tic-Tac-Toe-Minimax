@@ -1,7 +1,13 @@
+import sys
+from pathlib import Path
+
+# Añade el directorio raíz (un nivel arriba de api/) a sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from Minimax import Minimax
-from tic_tac_toe import tic_tac_toe
+from core.Minimax import Minimax
+from core.tic_tac_toe import tic_tac_toe
 from SolicitudJugada import SolicitudJugada
 from fastapi.middleware.cors import CORSMiddleware
 

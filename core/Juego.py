@@ -1,5 +1,5 @@
-import Minimax
-import tic_tac_toe
+import core.Minimax as Minimax
+import core.tic_tac_toe as tic_tac_toe
 import os
 import platform
 import time
