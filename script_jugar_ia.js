@@ -56,7 +56,7 @@ async function realizarJugadaHumano(col) {
     // Bloquear el tablero mientras piensa la IA
     esperandoIA = true;
 
-    textoEstado.innerText = "La IA está pensando...";
+    textoEstado.innerText = "A4 está pensando...";
     textoEstado.style.color = "yellow";
 
     try {
@@ -104,7 +104,7 @@ function procesarEstadoJuego(estado) {
     
     if (estado === "GANA_o") {
         textoEstado.style.display = "none";
-        textoVictoria.innerText = "¡Gana el jugador amarillo!";
+        textoVictoria.innerText = "¡Gana A4!";
         textoVictoria.style.color = "yellow";
         textoVictoria.style.display = "block";
         juegoTerminado = true;
